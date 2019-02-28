@@ -1,34 +1,57 @@
 <!doctype html>
 <html>
   <head>
+    <script type="text/javascript">
+    var count=2;
+    function pos(){document.getElementById('temples').style.top=document.getElementById('main').getBoundingClientRect().top-29.8125+'px';}
+    function addtem(){
+      if (count==11){
+        } else {
+        document.getElementById('temples').insertAdjacentHTML('beforeend', '<div id="BOX'+count+'"><button type="button" id="'+count+'" onclick="addtextx(this.id)" style="padding:0;">追加</button> <input type="text" id="text'+count+'"><br></div>');
+        count++;}}
+    function addtextx(str){var IDname='text'+str;document.MainBOX.MainIdea.value += document.getElementById(IDname).value;}
+    function deltextx(){if (count==1){}else{count--;var BOXName='BOX'+count;document.getElementById(BOXName).parentNode.removeChild(document.getElementById(BOXName));}}
+    function ShowLength( str){document.getElementById('Nowlength').innerHTML = str.length + "文字";}
+    function movlen(str){var sgks = str.length;console.log(sgks)}
+    </script>
     <meta name="Content-Style-Type" content="text/css">
-    <title>仕事場</title>
+    <title>{{title}}</title>
   </head>
   <body>
     <center>
-    <h2> 新規作品制作</h2>
-    <Form method="POST" action="/Write">
+    <h2> 新規作品執筆ページ </h2>
+    <Form method="POST" action="/Write" name="MainBOX">
       <div onclick="obj=document.getElementById('TitleID').style;
-       obj.display=(obj.display=='none')?'block':'none';">
-        <a style="cursor:pointer;">--タイトル展開--</a>
+       obj.display=(obj.display=='none')?'block':'none';pos();">
+        <a style="cursor:pointer;">--タイトル（収納/展開）--</a>
       </div>
       <div id="TitleID" style="clear:both;">
         <p>タイトル：<input type="text" name="title" style="font-size:1.3em; width:20em"　size="15"></P>
       </div>
       <div onclick="obj=document.getElementById('PrologID').style;
-       obj.display=(obj.display=='none')?'block':'none';">
-        <a style="cursor:pointer;">--あらすじ展開--</a>
+       obj.display=(obj.display=='none')?'block':'none';pos();">
+        <a style="cursor:pointer;">--あらすじ（収納/展開）--</a>
       </div>
       <div id="PrologID" style="clear:both;">
-        <p>あらすじ＜最大400文字＞（改行も1文字扱い）：<br>
-          <textarea cols='80' rows='10' name='prolog' maxlength="400" style="resize:none; font-size:1.1em"></textarea>
-        </p>
+        <p>あらすじ＜最大400文字＞（改行も1文字扱い）：<span id="Nowlength">0文字</span><br><textarea cols='80' rows='10' name='prolog' maxlength="400" style="resize:none; font-size:1.1em" onkeyup="ShowLength(this.value)"></textarea></p>
       </div>
-        <input type="submit" value="保存" style="padding:15px 40px;font-size: 1.5em;">
-        <br>
-        <p> 本文 </p>
-        <textarea cols="83" rows="20" name="MainIdea" style="resize:none;overflow:scroll;font-size:1.35em;"></textarea>
+      <input type="submit" value="保存" style="padding:15px 40px;font-size: 1.5em;">
+      <br>
+      <p> 本文 </p>
+      <div id="main">
+        <textarea cols="77" rows="30" name="MainIdea" style="resize:none;overflow:scroll;font-size:1.1em;z-index:2;position:relative;" id="Area" onkeyup="movlen(this.value)"></textarea>
+      </div>
     </form>
   </center>
+  <div id="temples" name="samples" style="position:absolute;top:514px;">
+    <button type="button" onclick="addtem()" value="追加" style="padding:0;margin:0;background:none;border:0;width:auto;height:auto;overflow:visible;"><img src="/static/images/plus.jpg" style="height:20px"></button>
+    <button type="button" onclick="deltextx()" value="削除" style="padding:0;margin:0;background:none;border:0;width:auto;height:auto;overflow:visible;"><img src="/static/images/minus.jpg" style="height:20px"></button>
+    <br>
+    <div id="BOX1">
+      <button type="button" id="1" onclick="addtextx(this.id)" style="padding:0;">追加</button>
+      <input type="text" id="text1" placeholder="ここの文字が追加される">
+    <br>
+    </div>
+  </div>
   </body>
 </html>
