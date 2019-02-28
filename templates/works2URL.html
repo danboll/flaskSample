@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>転載用ページ</title>
+  </head>
+  <body>
+    <h2> 転載用ページ </h2>
+    <Form method="POST" action="/URLcheck">
+      <p>ページ名：<input type="text" name="title" /><br/>
+        転載用URL：<input type="url" name="Link" />
+        {% if CheckRes %}
+          <input type="submit" value="保存" /></P>
+        {% else %}
+          <input type="submit" value="check" /></p>
+        {% endif %}
+    </form>
+    {% if CheckRes %}
+      <p><a href="{{Links}}">{{title}}</a></p>
+      <p>タイトル：{{title}}<br/><iframe width="1000" height="500" src="{{Links}}"> </iframe></p>
+    {% endif %}
+  </body>
+</html>

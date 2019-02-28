@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> アカウントページ </title>
+  </head>
+  <body>
+    <div style="box-shadow:0px 1px 0px;">
+      <a href="/"><img src='/static/images/banner/banner_sample1.jpg' width="10%" height="30px"></a>
+      <br clear="all">
+      <div style="position:fixed;top:10px;right:1%;">
+        {% if select %}
+          <a href="/mypage/{{check}}"> {{check}}</a>
+          <span style="margin-right:0.5em;"></span>
+          <a href="/logout"> ログアウト</a>
+        {% else %}
+           <a href="/Login"> ログイン</a>
+           <span style="margin-right:0.5em;"></span>
+           <a href="/createaccount"> 新規アカウント作成</a>
+        {% endif %}
+      </div>
+    </div>
+    {{name}}さんのページ<br>
+    自己紹介文:<br>
+    {% if select %}
+    <form action="/v" method="POST">
+      <input type="submit"/ value="新規作成">
+    </form>
+    <form action="/workURL" method="POST">
+      <input type="submit"/ value="既存作品のURL">
+    </form>
+    {% endif %}
+  </body>
+</html>

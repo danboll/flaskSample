@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="Content-Style-Type" content="text/css">
+    <title>{{Title}}</title>
+  </head>
+  <body>
+    <center>
+    <h2> 仕事場（直し） </h2>
+    <Form method="POST" action="/Write">
+      <div onclick="obj=document.getElementById('TitleID').style;
+       obj.display=(obj.display=='none')?'block':'none';">
+        <a style="cursor:pointer;">--タイトル展開--</a>
+      </div>
+      <div id="TitleID" style="clear:both;">
+        <p>タイトル：<input type="text" name="title" style="font-size:1.3em"　size="15" value={{Title}}></P>
+      </div>
+      <div onclick="obj=document.getElementById('PrologID').style;
+       obj.display=(obj.display=='none')?'block':'none';">
+        <a style="cursor:pointer;">--あらすじ展開--</a>
+      </div>
+      <div id="PrologID" style="clear:both;">
+        <p>あらすじ：<br><textarea cols='80' rows='5' name='prolog' maxlength="400" style="resize:none; font-size:1.1em"></textarea></p>
+      </div>
+        <input type="submit" value="保存" style="padding:15px 40px;font-size: 1.5em;">
+        <br>
+        <p> 本文 </p>
+          <textarea cols="50" rows="30" name="MainIdea" style="resize:none;overflow:scroll;font-size:1.1em;">{{ Main|join(''|safe) }}</textarea>
+    </form>
+  </center>
+  </body>
+</html>

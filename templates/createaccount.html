@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>アカウント作成ページ</title>
+</head>
+<body>
+  <form action='/createcheck' method="POST" name="accinfo">
+    <p> アカウント名：<input type="text" name="accname" style="font-size:1.15em" required autofocus></p>
+    <p> パスワード　：<input type="password" name="newpass" style="font-size:1.15em" required></p>
+    <input type="submit" value="保存" style="padding:15px 40px;font-size:1000%">
+  </form>
+  {% if error %}
+  {{error}}
+  {% endif %}
+</body>

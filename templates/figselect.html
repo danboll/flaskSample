@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <meta name="Content-Style-Type" content="text/css">
+    <style>
+     input[type=checkbox] {display: none;}
+     input[type=checkbox]:checked{display: block;}
+     input[type=checkbox]:checked + img {border:1px solid blue;box-sizing: border-box;}
+    </style>
+    <script type="text/javascript">
+      jQuery(function($){ $(function(){
+          $('.select').on('click', function() {
+            if ($(this).prop('checked')){
+              $('.select').prop('checked', false); $(this).prop('checked', true);
+            }
+          });
+      }); });
+    </script>
+    <title> ようこそ </title>
+  </head>
+  <body>
+    <form action="/promotion" method="POST">
+      <input value="保存" type="submit">
+    {% for Office in Offices %}
+    <ul>
+      <div onclick="obj=document.getElementById('{{Office}}').style;
+        obj.display=(obj.display=='none')?'block':'none';">
+        <li>
+          <a style="cursor:pointer;">--{{OfficeNames[Office]}}--</a>
+      </div>
+      <div id='{{Office}}' style="display: none;clear:both;">
+        {% for idol in range(idolbecon[Office], idolcount[Office]) %}
+          <ul type="circle">
+            <li>
+              <div onclick="obj=document.getElementById('{{FolNames[idol]}}').style;
+                obj.display=(obj.display=='none')?'block':'none';">
+                 <a style="cursor:pointer;">{{TagNames[idol]}}</a>
+              </div>
+              <div id='{{FolNames[idol]}}' style="display: none;clear:both;">
+                {% for num in range(filnums[FolNames[idol]]|length) %}
+                <label style="position:relative;display:inline-block;">
+                <input type="checkbox" class="select" value={{FolNames[idol]}} style="position:absolute;">
+                  <img src="/static/images/{{Office}}/{{FolNames[idol]}}/{{filnums[FolNames[idol]][num]}}" alt={{TagNames[idol]}} width="100" height="100">
+                </label>
+                {% endfor %}
+              </div>
+            </li>
+          </ul>
+        {% endfor %}
+        </li>
+      </ul>
+      </div>
+    {% endfor %}
+  </form>
+  </body>
+</html>

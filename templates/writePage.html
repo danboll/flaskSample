@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="Content-Style-Type" content="text/css">
+    <title>仕事場</title>
+  </head>
+  <body>
+    <center>
+    <h2> 新規作品制作</h2>
+    <Form method="POST" action="/Write">
+      <div onclick="obj=document.getElementById('TitleID').style;
+       obj.display=(obj.display=='none')?'block':'none';">
+        <a style="cursor:pointer;">--タイトル展開--</a>
+      </div>
+      <div id="TitleID" style="clear:both;">
+        <p>タイトル：<input type="text" name="title" style="font-size:1.3em; width:20em"　size="15"></P>
+      </div>
+      <div onclick="obj=document.getElementById('PrologID').style;
+       obj.display=(obj.display=='none')?'block':'none';">
+        <a style="cursor:pointer;">--あらすじ展開--</a>
+      </div>
+      <div id="PrologID" style="clear:both;">
+        <p>あらすじ＜最大400文字＞（改行も1文字扱い）：<br>
+          <textarea cols='80' rows='10' name='prolog' maxlength="400" style="resize:none; font-size:1.1em"></textarea>
+        </p>
+      </div>
+        <input type="submit" value="保存" style="padding:15px 40px;font-size: 1.5em;">
+        <br>
+        <p> 本文 </p>
+        <textarea cols="83" rows="20" name="MainIdea" style="resize:none;overflow:scroll;font-size:1.35em;"></textarea>
+    </form>
+  </center>
+  </body>
+</html>
